@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeevithan Muhunthan | Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">JM.</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section id="about" class="hero section">
+            <div class="hero-card brutal-card bg-yellow">
+                <h1>Hi, I'm Jeevithan Muhunthan! ✌️</h1>
+                <p>Welcome to my Brutal Notebook! I am a passionate developer who loves exploring new technologies, building creative projects, and combining crazy design ideas.</p>
+                <div class="badges">
+                    <span class="badge bg-pink">Developer</span>
+                    <span class="badge bg-cyan">Designer</span>
+                    <span class="badge bg-lime">Creator</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <h2 class="section-title">Cool Projects</h2>
+            <div class="projects-grid">
+                <div class="brutal-card project-card bg-white">
+                    <div class="project-img bg-cyan"></div>
+                    <h3>Snake Game</h3>
+                    <p>A fun classic snake game built with Python and Pygame.</p>
+                    <a href="#" class="btn bg-yellow">View Source</a>
+                </div>
+                <div class="brutal-card project-card bg-white">
+                    <div class="project-img bg-pink"></div>
+                    <h3>Portfolio Maker</h3>
+                    <p>A CLI tool to generate beautiful static portfolios.</p>
+                    <a href="#" class="btn bg-yellow">View Source</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section">
+            <h2 class="section-title">My Experience</h2>
+            <div class="timeline">
+                <div class="brutal-card bg-white job-card">
+                    <h3>Software Developer @ Tech Company</h3>
+                    <p class="date">Jan 2023 - Present</p>
+                    <ul>
+                        <li>Developed and maintained cool web applications.</li>
+                        <li>Collaborated with an awesome team of engineers.</li>
+                        <li>Wrote clean, efficient, and well-documented code.</li>
+                    </ul>
+                </div>
+                <div class="brutal-card bg-white job-card">
+                    <h3>Junior Developer @ Startup Inc</h3>
+                    <p class="date">Jun 2021 - Dec 2022</p>
+                    <ul>
+                        <li>Built responsive UI components using HTML, CSS, and JS.</li>
+                        <li>Learned a ton about agile development and shipping fast.</li>
+                        <li>Assisted in debugging and squashing pesky bugs.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <h2 class="section-title">Tech Skills</h2>
+            <div class="skills-grid">
+                <div class="brutal-card skill-card bg-pink">JavaScript</div>
+                <div class="brutal-card skill-card bg-cyan">HTML/CSS</div>
+                <div class="brutal-card skill-card bg-yellow">React</div>
+                <div class="brutal-card skill-card bg-lime">Node.js</div>
+                <div class="brutal-card skill-card bg-purple">Python</div>
+                <div class="brutal-card skill-card bg-orange">UI/UX</div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="timeline">
+                <div class="brutal-card bg-white job-card">
+                    <h3>B.S. in Computer Science</h3>
+                    <p class="date">University of Technology • 2017 - 2021</p>
+                    <ul>
+                        <li>Graduated with Honors.</li>
+                        <li>Relevant Coursework: Data Structures, Algorithms, Web Development.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="brutal-card bg-purple text-white contact-card">
+                <h2>Let's Work Together!</h2>
+                <p>Have a cool project in mind or just want to say hi?</p>
+                <a href="mailto:hello@example.com" class="btn bg-lime text-black">Send an Email</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Draggable Stickers -->
+    <div class="sticker" style="top: 15%; left: 8%;">🎷</div>
+    <div class="sticker" style="top: 35%; right: 10%;">🤖</div>
+    <div class="sticker" style="top: 60%; left: 5%;">🦾</div>
+    <div class="sticker" style="top: 85%; right: 15%;">⚙️</div>
+    <img src="https://upload.wikimedia.org/wikipedia/en/0/0e/Philadelphia_76ers_logo.svg" alt="76ers" class="sticker" style="top: 50%; left: 70%; width: 120px;" draggable="false">
+
+    <!-- Phantom Slingshot -->
+    <svg id="slingshot-svg" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; display: none;">
+        <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="rgba(50,50,50,0.4)" />
+            </marker>
+        </defs>
+        <line id="slingshot-band" x1="0" y1="0" x2="0" y2="0" stroke="rgba(50,50,50,0.4)" stroke-width="4" stroke-dasharray="6,6" marker-end="url(#arrowhead)" />
+    </svg>
+
+    <!-- Basketball Game Elements -->
+    <div id="scoreboard" class="brutal-card bg-white">Score: <span id="score-val">0</span></div>
+    <div id="hoop-container">
+        <div id="hoop-backboard"></div>
+        <div id="hoop-rim"></div>
+        <div id="hoop-net"></div>
+    </div>
+    <div id="ball" title="Drag and pull back to shoot!"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
