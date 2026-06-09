@@ -353,3 +353,112 @@ p, ul, .date {
 #instruction-overlay.hidden {
     display: none;
 }
+
+/* ==============================
+   NEW COMPONENT STYLES
+   ============================== */
+
+/* Sticker Sections (Experience) */
+.sticker-section {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    border: 2px solid var(--text);
+    box-shadow: 4px 4px 0 var(--text);
+    border-radius: 0;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: transform 0.2s, background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.sticker-section:hover {
+    transform: translate(-2px, -2px) rotate(1deg);
+    background: rgba(255, 255, 255, 0.8);
+}
+.sticker-section .icon {
+    font-size: 3rem;
+}
+
+/* Gallery Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem 0;
+}
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border: var(--border);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+.gallery-item::after {
+    content: "View";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    background: rgba(255,255,255,0.6);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+.gallery-item:hover::after {
+    opacity: 1;
+}
+
+/* Contact Form Enhancements */
+.contact-form {
+    display: grid;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: var(--border);
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--cyan);
+    box-shadow: 0 0 8px rgba(0, 180, 180, 0.5);
+    outline: none;
+}
+.contact-form button {
+    justify-self: start;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.contact-form button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--text);
+}
+
+/* Success / Error Message */
+#form-message {
+    margin-top: 1rem;
+    font-weight: 700;
+    color: var(--lime);
+}
