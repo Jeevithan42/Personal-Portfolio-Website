@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,11 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <nav class="navbar">
         <div class="logo">JM.</div>
@@ -27,7 +31,8 @@
         <section id="about" class="hero section">
             <div class="hero-card brutal-card bg-yellow">
                 <h1>Hi, I'm Jeevithan Muhunthan! ✌️</h1>
-                <p>Welcome to my Brutal Notebook! I am a passionate developer who loves exploring new technologies, building creative projects, and combining crazy design ideas.</p>
+                <p>Welcome to my Brutal Notebook! I am a passionate developer who loves exploring new technologies,
+                    building creative projects, and combining crazy design ideas.</p>
                 <div class="badges">
                     <span class="badge bg-pink">Developer</span>
                     <span class="badge bg-cyan">Designer</span>
@@ -116,6 +121,35 @@
                 <a href="mailto:hello@example.com" class="btn bg-lime text-black">Send an Email</a>
             </div>
         </section>
+
+        <!-- Contact Form Section -->
+        <section id="contact-form" class="section">
+            <h2 class="section-title">Get in Touch</h2>
+            <form action="#" method="POST" class="contact-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required />
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required />
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                <button type="submit" class="btn bg-lime text-black">Send Message</button>
+            </form>
+        </section>
+
+        <!-- Picture Slideshow -->
+        <section id="slideshow" class="section">
+            <h2 class="section-title">Gallery</h2>
+            <div class="slideshow-container">
+                <img src="assets/images/placeholder1.png" class="slide"
+                    style="display:none; width:100%; max-height:400px; object-fit:cover;" />
+                <img src="assets/images/placeholder2.png" class="slide"
+                    style="display:none; width:100%; max-height:400px; object-fit:cover;" />
+                <img src="assets/images/placeholder3.png" class="slide"
+                    style="display:none; width:100%; max-height:400px; object-fit:cover;" />
+            </div>
+        </section>
+
+        <!-- End of Added Sections -->
     </main>
 
     <!-- Draggable Stickers -->
@@ -123,16 +157,19 @@
     <div class="sticker" style="top: 35%; right: 10%;">🤖</div>
     <div class="sticker" style="top: 60%; left: 5%;">🦾</div>
     <div class="sticker" style="top: 85%; right: 15%;">⚙️</div>
-    <img src="https://upload.wikimedia.org/wikipedia/en/0/0e/Philadelphia_76ers_logo.svg" alt="76ers" class="sticker" style="top: 50%; left: 70%; width: 120px;" draggable="false">
+    <img src="https://upload.wikimedia.org/wikipedia/en/0/0e/Philadelphia_76ers_logo.svg" alt="76ers" class="sticker"
+        style="top: 50%; left: 70%; width: 120px;" draggable="false">
 
     <!-- Phantom Slingshot -->
-    <svg id="slingshot-svg" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; display: none;">
+    <svg id="slingshot-svg"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; display: none;">
         <defs>
             <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                 <polygon points="0 0, 10 3.5, 0 7" fill="rgba(50,50,50,0.4)" />
             </marker>
         </defs>
-        <line id="slingshot-band" x1="0" y1="0" x2="0" y2="0" stroke="rgba(50,50,50,0.4)" stroke-width="4" stroke-dasharray="6,6" marker-end="url(#arrowhead)" />
+        <line id="slingshot-band" x1="0" y1="0" x2="0" y2="0" stroke="rgba(50,50,50,0.4)" stroke-width="4"
+            stroke-dasharray="6,6" marker-end="url(#arrowhead)" />
     </svg>
 
     <!-- Basketball Game Elements -->
@@ -142,8 +179,33 @@
         <div id="hoop-rim"></div>
         <div id="hoop-net"></div>
     </div>
-    <div id="ball" title="Drag and pull back to shoot!"></div>
+    <div id="ball"></div>
 
-    <script src="script.js"></script>
+
+    <script src="script.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Slideshow logic: replace placeholder images if local files missing
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 0;
+            function showSlide(index) {
+                slides.forEach((s, i) => s.style.display = i === index ? 'block' : 'none');
+            }
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+            if (slides.length > 0) {
+                slides.forEach((img, idx) => {
+                    if (img.src.includes('placeholder')) {
+                        img.src = `https://via.placeholder.com/800x400?text=Slide+${idx + 1}`;
+                    }
+                });
+                showSlide(currentSlide);
+                setInterval(nextSlide, 4000);
+            }
+        });
+    </script>
 </body>
+
 </html>

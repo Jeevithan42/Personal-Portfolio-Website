@@ -60,9 +60,30 @@ let currentY = window.innerHeight - 150;
 let vx = 0;
 let vy = 0;
 
-const gravity = 0.6;
-const bounce = -0.85; // Extra bouncy!
-const friction = 0.99;
+const gravity = 0.5; // slightly lighter gravity for smoother arcs
+const bounce = -0.7; // slightly less bouncy
+const friction = 0.98; // a touch more friction for smoother slows
+
+// Reset button to reposition ball
+
+
+// Hide instructional overlay after first interaction
+let hasInteracted = false;
+function hideInstructionOverlay() {
+    const overlay = document.getElementById('instruction-overlay');
+    if (overlay) overlay.style.display = 'none';
+}
+
+// Double‑click on the ball to reset to start position
+ball.addEventListener('dblclick',() => {
+    isFlying=false;
+    isDragging=false;
+    currentX = 50;
+    currentY = window.innerHeight - 150;
+    vx=vy=0;
+    rotation=0;
+    ball.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${rotation}deg)`;
+});
 
 let dragDx = 0;
 let dragDy = 0;
@@ -113,17 +134,15 @@ function dragBall(e) {
     dragDx = pos.x - startX;
     dragDy = pos.y - startY;
     
-    ball.style.transform = `translate(${currentX + dragDx}px, ${currentY + dragDy}px) rotate(${rotation + dragDx}deg)`;
+
     
-    // Update phantom slingshot arrow
-    let pulledX = currentX + 30 + dragDx;
-    let pulledY = currentY + 30 + dragDy;
-    // Arrow points opposite to drag (forwards)
-    let targetX = pulledX - dragDx * 3;
-    let targetY = pulledY - dragDy * 3;
-    
-    slingshotBand.setAttribute('x1', pulledX);
-    slingshotBand.setAttribute('y1', pulledY);
+    // Update phantom slingshot arrow to point from ball to drag point (intuitive)
+    const anchorX = currentX + 30; // ball center
+    const anchorY = currentY + 30;
+    const targetX = anchorX + dragDx; // where mouse is dragging to
+    const targetY = anchorY + dragDy;
+    slingshotBand.setAttribute('x1', anchorX);
+    slingshotBand.setAttribute('y1', anchorY);
     slingshotBand.setAttribute('x2', targetX);
     slingshotBand.setAttribute('y2', targetY);
 }
@@ -133,16 +152,15 @@ function endDragBall(e) {
     isDragging = false;
     slingshotSvg.style.display = 'none';
     
-    currentX += dragDx;
-    currentY += dragDy;
-    
+    // Apply velocity based on drag direction (pull back to launch forward)
     vx = -dragDx * 0.25;
     vy = -dragDy * 0.25;
     
     const speed = Math.sqrt(vx*vx + vy*vy);
-    if(speed > 60) {
-        vx = (vx/speed)*60;
-        vy = (vy/speed)*60;
+    // Increase max speed cap for more responsive launches
+    if(speed > 80) {
+        vx = (vx/speed)*80;
+        vy = (vy/speed)*80;
     }
     
     dragDx = 0;
@@ -154,6 +172,33 @@ function endDragBall(e) {
     } else {
         ball.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${rotation}deg)`;
     }
+}
+
+// Initialize picture slideshow (in case DOMContentLoaded missed)
+function initSlideshow() {
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    if (slides.length === 0) return;
+    slides.forEach((img, idx) => {
+        if (img.src.includes('placeholder')) {
+            img.src = `https://via.placeholder.com/800x400?text=Slide+${idx + 1}`;
+        }
+    });
+    function showSlide(index) {
+        slides.forEach((s, i) => s.style.display = i === index ? 'block' : 'none');
+    }
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+    showSlide(currentSlide);
+    setInterval(nextSlide, 4000);
+}
+// Run slideshow init on load (covers both ready states)
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSlideshow);
+} else {
+    initSlideshow();
 }
 
 ball.addEventListener('mousedown', startDragBall);

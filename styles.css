@@ -333,3 +333,23 @@ p, ul, .date {
     #hoop-container { right: 2vw; transform: scale(0.8); }
     #scoreboard { font-size: 1.5rem; top: 80px; left: 10px; }
 }
+/* Instruction overlay for basketball game */
+#instruction-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.9);
+    padding: 1rem 2rem;
+    border: var(--border);
+    box-shadow: var(--shadow);
+    font-size: 1.5rem;
+    z-index: 2000;
+    color: var(--text);
+    text-align: center;
+}
+
+/* Optional fade-out */
+#instruction-overlay.hidden {
+    display: none;
+}
